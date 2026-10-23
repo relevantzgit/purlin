@@ -160,8 +160,6 @@ It prints one JSON list of the comments that are nearly markers, each with its `
 purlin:test <name>
 ```
 
-Where routing is on and the test tier's model is not the one running, run it as `references/formats/routing_format.md`, "The hand-off", says.
-
 Never run the test framework directly. `purlin:test` runs the project's own test command, ties
 each result to the marker above its test, writes the evidence and prints the state of each rule;
 where no test command is set it prints a suggestion and asks before it writes one, so write no

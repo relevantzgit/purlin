@@ -1,7 +1,7 @@
 ---
 name: runner
 description: Runs one Purlin skill the session hands over, on the model the hand-off names
-tools: Skill, Read, Bash, PowerShell
+tools: Skill, Read, Write, Edit, Bash, PowerShell
 ---
 
 # Purlin runner
