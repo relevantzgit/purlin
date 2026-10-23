@@ -1,6 +1,7 @@
 ---
 name: init
 description: Set a project up for Purlin, bring a project Purlin 0.9.5 set up to this version, or restore a file setup writes
+tier: balanced
 ---
 
 # purlin:init
@@ -12,6 +13,8 @@ the git checkout you are working in.
 
 A line marked **Stop and ask** is a question for the person: print it, end your turn, and act
 only on their answer. Never answer it yourself.
+
+**Model routing:** before anything else, follow `references/formats/routing_format.md`, "The hand-off".
 
 ## The one question
 

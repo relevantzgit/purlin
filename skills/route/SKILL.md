@@ -1,0 +1,73 @@
+---
+name: route
+description: Show, set up or turn off model routing, so each Purlin skill runs on a model sized to its work
+---
+
+Show, set up or turn off model routing. Each Purlin skill names its tier, `fast`, `balanced` or
+`performance`, in its own front matter; this skill gives each tier a model for the project, in
+`.purlin/routing.json`, and sets the project's sessions to start as the Purlin agent.
+`references/formats/routing_format.md` is the one home of the tables, the file, the hand-off and
+the escalation.
+
+**Paths in this skill:** every `references/` and `agents/` path below is relative to the plugin
+root; see `references/purlin_commands.md#path-resolution`.
+
+A line marked **Stop and ask** is a question for the person: print it, end your turn, and act
+only on their answer. Never answer it yourself.
+
+## Usage
+
+```
+purlin:route            Show the tier and model of each skill
+purlin:route setup      Write or change the routing file and the session settings
+purlin:route off        Run every skill in this session again
+```
+
+`purlin:route` itself runs in this session, whatever the file says.
+
+## Show
+
+Read `.purlin/routing.json`, and the `tiers` of `.purlin/routing.local.json` over it. Print one
+line per skill: its name, its tier and that tier's model, the tier from the file's `skills` entry
+or else the skill's own `tier:`, as the format's table gives them. Mark `spec`, `spec-from-code`
+and `sign` `runs in this session`.
+
+With no file, print `Routing is not set up. Run purlin:route setup.` With `"enabled": false`,
+print `Routing is off. Run purlin:route setup to turn it on.` Write nothing either way.
+
+## Setup
+
+1. Read `.purlin/routing.json` where it exists, and keep each setting the person does not change.
+2. Name the models this harness can start, as it names them. In Claude Code these are the three
+   slots `haiku`, `sonnet` and `opus`, which a gateway may fill with another provider's models.
+   Where the harness names none, ask the person to name them. Show each skill's tier from the
+   format's table.
+3. **Stop and ask** the person to confirm the model each tier gets, and any skill whose tier in
+   this project differs from its own. Ask too whether the models are the team's or theirs alone.
+4. Write `.purlin/routing.json` with `"schema": "purlin-routing/1"`, `"enabled": true`, the
+   `tiers` and any `skills` confirmed, in the shape the format gives. Where the models are the
+   person's alone, write the tiers to `.purlin/routing.local.json` instead, and leave the team's
+   as they are. `.purlin/routing.local.json` holds `tiers` alone, and git ignores it: add the line
+   `.purlin/routing.local.json` to `.gitignore` where no line covers it.
+5. Merge `"agent": "purlin:purlin"` and `"model": "<the balanced model>"` into
+   `.claude/settings.json`, keeping every other setting, or into `.claude/settings.local.json`
+   where the models are the person's alone. Tell the person that sessions started from now on run
+   as the Purlin agent on that model, and that this session keeps its own.
+6. Commit `.purlin/routing.json` and `.claude/settings.json`, with `.gitignore` where step 4
+   changed it, and nothing else, as `chore: model routing`. The commit takes the `chore:` prefix
+   of `references/commit_conventions.md`. Then show the table as "Show" says.
+
+## Off
+
+Set `"enabled": false` in `.purlin/routing.json` and keep every other setting. Off then takes out
+of `.claude/settings.json`, or `.claude/settings.local.json`, the `agent` where it is
+`purlin:purlin` and the `model` where it is the `balanced` model, keeping every other setting.
+Commit `.purlin/routing.json` and `.claude/settings.json` alone as `chore: model routing off`.
+Every skill then runs in this session, sessions start as they did before routing, and
+`purlin:route setup` turns routing on again with the settings kept.
+
+## Limits
+
+- Setup starts no model, so a model the harness does not know fails at the first skill that
+  names it. Run `purlin:route setup` again to change it.
+- `spec`, `spec-from-code` and `sign` run in this session, as the format says.

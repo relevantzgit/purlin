@@ -1,6 +1,7 @@
 ---
 name: drift
 description: Report what a pull, a merge, a rebase or a checkout changed in the rules, the proofs and the tests, and name a number two branches both took
+tier: fast
 ---
 
 Report what changed since you last brought someone else's changes into your checkout, in one
@@ -11,6 +12,8 @@ is relative to the plugin root; see `references/purlin_commands.md#path-resoluti
 
 **Pending migrations:** when the status opens with a pending-migrations advisory, stop and
 follow `references/purlin_commands.md#pending-migrations` before doing this skill's work.
+
+**Model routing:** before anything else, follow `references/formats/routing_format.md`, "The hand-off".
 
 ## Usage
 

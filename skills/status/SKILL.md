@@ -1,6 +1,7 @@
 ---
 name: status
 description: "Show where the project stands: whether the tests are met, whether it is signed, each rule's two cells, and what is left to do"
+tier: fast
 ---
 
 Show where every feature stands: whether the tests are met, whether this code is signed, how many
@@ -10,6 +11,8 @@ while its upgrade is pending, it writes nothing.
 
 **Paths in this skill:** every `references/`, `templates/`, `scripts/` and `agents/` path below
 is relative to the plugin root; see `references/purlin_commands.md#path-resolution`.
+
+**Model routing:** before anything else, follow `references/formats/routing_format.md`, "The hand-off".
 
 ## Usage
 

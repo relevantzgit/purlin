@@ -1,6 +1,7 @@
 ---
 name: spec-from-code
 description: Write the specs for a codebase that has none, from the code and the tests it already has
+tier: performance
 ---
 
 # purlin:spec-from-code
@@ -18,6 +19,8 @@ only on their answer. Never answer it yourself.
 no test is run first: a failing test keeps its rule failing until the code is fixed. Where no
 test covers the code, the rule says what the code does, not what it should do, so every rule
 this skill writes is a draft until a person reads it. Say so when you hand the result over.
+
+**Model routing:** before anything else, follow `references/formats/routing_format.md`, "The hand-off".
 
 ## Before you start
 

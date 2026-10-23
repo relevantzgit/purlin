@@ -1,6 +1,7 @@
 ---
 name: test
 description: Run the project's marked tests and record the results as evidence; with --all --commit, the hand-off before a sign-off
+tier: fast
 ---
 
 Run the project's own test suites, tie each result to the marker comment above its test, write
@@ -16,6 +17,8 @@ follow `references/purlin_commands.md#pending-migrations` before doing this skil
 
 A line marked **Stop and ask** is a question for the person: print it, end your turn, and act
 only on their answer. Never answer it yourself.
+
+**Model routing:** before anything else, follow `references/formats/routing_format.md`, "The hand-off".
 
 ## Usage
 

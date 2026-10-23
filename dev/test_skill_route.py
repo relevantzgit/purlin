@@ -1,0 +1,116 @@
+"""What the route skill, `skills/route/SKILL.md`, must say.
+
+One test per proof of `specs/skills/skill_route.md`. A copy of the skill with
+one name taken out is read through `copy_without`; the file on disk is never
+touched.
+"""
+
+import re
+
+import skill_checks
+from skill_checks import (copy_without, flat, must_name, sentences_with,
+                          skill_path, under_heading)
+
+SKILL = skill_path('route')
+COMMANDS = ('purlin:route', 'purlin:route setup', 'purlin:route off')
+FORMAT = 'references/formats/routing_format.md'
+
+
+def part(name):
+    return flat(under_heading(skill_checks.read(SKILL), name))
+
+
+def split(text):
+    return re.split(r'(?<=\.)\s+(?=[A-Z`*0-9])', text)
+
+
+def with_all(text, names):
+    return [s for s in split(text) if all(name in s for name in names)]
+
+
+# purlin: skill_route PROOF-1
+def test_the_route_skill_names_its_commands_and_the_format():
+    assert must_name('route', COMMANDS, (FORMAT,)) == []
+
+
+# purlin: skill_route PROOF-2
+def test_a_copy_without_route_off_is_reported():
+    with copy_without(SKILL, 'purlin:route off'):
+        assert must_name('route', COMMANDS, (FORMAT,)) == [
+            'route does not name purlin:route off']
+
+
+# purlin: skill_route PROOF-3
+def test_the_route_skill_names_no_script():
+    assert [line for line in skill_checks.read(SKILL).splitlines()
+            if re.search(r'scripts/\w', line)] == []
+
+
+ASK = ('Stop and ask', 'the model each tier gets')
+WRITE = 'Write `.purlin/routing.json`'
+
+
+# purlin: skill_route PROOF-4
+def test_setup_asks_for_the_models_before_it_writes_the_file():
+    sentences = split(part('Setup'))
+    asked = [n for n, s in enumerate(sentences) if all(a in s for a in ASK)]
+    written = [n for n, s in enumerate(sentences) if WRITE in s]
+    assert asked and written and asked[0] < written[0]
+
+
+# purlin: skill_route PROOF-5
+def test_a_copy_without_stop_and_ask_asks_nothing():
+    with copy_without(SKILL, 'Stop and ask'):
+        assert with_all(part('Setup'), ASK) == []
+
+
+LOCAL = ('.purlin/routing.local.json', '`tiers` alone', 'git ignores')
+
+
+# purlin: skill_route PROOF-6
+def test_the_local_file_holds_tiers_alone_and_git_ignores_it():
+    assert sentences_with(SKILL, LOCAL)
+
+
+# purlin: skill_route PROOF-7
+def test_a_copy_without_git_ignores_holds_no_such_sentence():
+    with copy_without(SKILL, 'git ignores'):
+        assert sentences_with(SKILL, LOCAL) == []
+
+
+SETTINGS = ('"agent": "purlin:purlin"', '.claude/settings.json',
+            'every other setting')
+
+
+# purlin: skill_route PROOF-8
+def test_setup_writes_the_session_settings_and_off_takes_them_out():
+    assert with_all(part('Setup'), SETTINGS)
+    assert with_all(part('Off'), ('.claude/settings.json', 'takes out'))
+
+
+# purlin: skill_route PROOF-9
+def test_a_copy_without_every_other_setting_holds_no_such_sentence():
+    with copy_without(SKILL, 'every other setting'):
+        assert with_all(part('Setup'), SETTINGS) == []
+
+
+COMMIT = ('.purlin/routing.json', '.claude/settings.json', 'chore:')
+
+
+# purlin: skill_route PROOF-10
+def test_setup_and_off_each_commit_the_two_files_under_chore():
+    assert with_all(part('Setup'), COMMIT)
+    assert with_all(part('Off'), COMMIT)
+
+
+# purlin: skill_route PROOF-11
+def test_a_copy_without_chore_commits_in_neither_part():
+    with copy_without(SKILL, 'chore:'):
+        assert with_all(part('Setup'), COMMIT) == []
+        assert with_all(part('Off'), COMMIT) == []
+
+
+# purlin: skill_route PROOF-12
+def test_setup_starts_no_model():
+    assert sentences_with(SKILL, ('starts no model',
+                                  'fails at the first skill'))

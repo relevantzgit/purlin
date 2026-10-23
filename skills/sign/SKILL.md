@@ -1,6 +1,7 @@
 ---
 name: sign
 description: "Sign off a version: build the evidence package from the committed evidence, walk its hand checks with a person, and sign it in a signed commit; also check a package against its fingerprint"
+tier: performance
 ---
 
 Sign this version of the code. `purlin:sign` reads the committed evidence, builds the evidence
@@ -19,6 +20,8 @@ follow `references/purlin_commands.md#pending-migrations` before doing this skil
 
 A line marked **Stop and ask** is a question for the person: print it, end your turn, and act
 only on their answer. Never answer it yourself.
+
+**Model routing:** before anything else, follow `references/formats/routing_format.md`, "The hand-off".
 
 ## Usage
 
