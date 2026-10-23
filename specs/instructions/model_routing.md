@@ -10,8 +10,8 @@
 >   the one home of all of it.
 > Scope: references/formats/routing_format.md, skills/, agents/purlin.md, agents/runner.md
 > Stack: markdown, Claude Code skill and agent definitions
-> Highest-Rule: 10
-> Highest-Proof: 16
+> Highest-Rule: 11
+> Highest-Proof: 17
 
 ## Rules
 
@@ -25,6 +25,7 @@
 - RULE-8: The runner agent's front matter names `tools: Skill, Read, Write, Edit, Bash, PowerShell`, and its text says the model is chosen and it does not route again
 - RULE-9: The agent definition has a part `Model routing` naming `references/formats/routing_format.md`, "The project skills" and "The hand-off", and does not restate the hand-off message
 - RULE-10: The format says the model in an `@ai(...)` tag is not routed, and that the audit's planted bugs are written on the `performance` model
+- RULE-11: The hand-off form runs `purlin:<skill>` in the session, starting no subagent, where the session already runs on the skill's model
 
 ## Proof
 
@@ -44,3 +45,4 @@
 - PROOF-14 (RULE-10): One sentence of the format holds both `@ai(` and `is not routed`
 - PROOF-15 (RULE-10): One sentence of the format holds `planted bugs`, `performance` and `--model`
 - PROOF-16 (RULE-3): The format's part "The project skills" holds a sentence with `spec`, `spec-from-code`, `sign` and `purlin:runner`, and a sentence with `init` and `no project skill`
+- PROOF-17 (RULE-11): The body of the format's hand-off form holds a sentence with `If you already run on`, `<model>`, `purlin:<skill>` and `here`, before the sentence that starts the `purlin:runner` subagent
