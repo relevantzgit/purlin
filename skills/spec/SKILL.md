@@ -20,8 +20,6 @@ only on their answer. Never answer it yourself.
 For the syntax, read `references/formats/spec_format.md`. For what makes a rule worth writing,
 read `references/spec_quality_guide.md`. Neither is restated here.
 
-**Model routing:** before anything else, follow `references/formats/routing_format.md`, "The hand-off".
-
 ## Procedure
 
 1. Get the status from the tool `mcp__plugin_purlin_purlin__sync_status`, passing `project_root`:

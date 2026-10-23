@@ -233,7 +233,7 @@ input, takes the end of input as no, and goes on only with a typed answer or the
 
   Routing
   purlin:route                    The tier and model of each skill
-  purlin:route setup              Give each tier a model, and start sessions as the Purlin agent
+  purlin:route setup              Give each tier a model, write a project skill per skill, start sessions as the Purlin agent
   purlin:route off                Run every skill in this session again
 ```
 
@@ -252,7 +252,7 @@ input, takes the end of input as no, and goes on only with a typed answer or the
 | `purlin:anchor` | `specs/_anchors/<name>.md`, creating `specs/_anchors/` with the first anchor |
 | `purlin:status` | `.purlin/report-data.js`, the data the dashboard reads, and `purlin-report.html`, its page, where the project's copy is missing or differs from the plugin's; git ignores both. `purlin:test`, `purlin:audit` and `purlin:sign` write the same two when they finish |
 | `purlin:drift` | Nothing. It reads only this checkout and never fetches |
-| `purlin:route` | `setup`: `.purlin/routing.json`, or `.purlin/routing.local.json` for one person's models, and `"agent"` and `"model"` in `.claude/settings.json` or `.claude/settings.local.json`, committed as `chore: model routing`. `off`: `"enabled": false` and the two settings taken out, committed as `chore: model routing off`. With no word it writes nothing |
+| `purlin:route` | `setup`: `.purlin/routing.json`, or `.purlin/routing.local.json` for one person's models, one project skill `.claude/skills/<skill>/SKILL.md` per skill that names a tier, and `"agent"` and `"model"` in `.claude/settings.json` or `.claude/settings.local.json`, committed as `chore: model routing`. `off`: `"enabled": false`, the project skills it wrote removed and the two settings taken out, committed as `chore: model routing off`. With no word it writes nothing |
 
 ## Exit codes
 

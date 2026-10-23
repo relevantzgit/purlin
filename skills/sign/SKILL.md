@@ -21,8 +21,6 @@ follow `references/purlin_commands.md#pending-migrations` before doing this skil
 A line marked **Stop and ask** is a question for the person: print it, end your turn, and act
 only on their answer. Never answer it yourself.
 
-**Model routing:** before anything else, follow `references/formats/routing_format.md`, "The hand-off".
-
 ## Usage
 
 ```

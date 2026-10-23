@@ -13,8 +13,6 @@ is relative to the plugin root; see `references/purlin_commands.md#path-resoluti
 **Pending migrations:** when the status opens with a pending-migrations advisory, stop and
 follow `references/purlin_commands.md#pending-migrations` before doing this skill's work.
 
-**Model routing:** before anything else, follow `references/formats/routing_format.md`, "The hand-off".
-
 ## Usage
 
 ```

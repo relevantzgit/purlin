@@ -1,7 +1,7 @@
 ---
 name: audit
 description: Check how much the tests are worth: heuristic spot tests and one planted bug per proof, written into the evidence
-tier: performance
+tier: balanced
 ---
 
 Show how much the tests are worth. The audit runs the marked tests, then for each rule that
@@ -16,8 +16,6 @@ relative to the plugin root; see `references/purlin_commands.md#path-resolution`
 `project_root` on every Purlin tool call: the top folder of the git checkout you are working in.
 **Pending migrations:** when the status opens with a pending-migrations advisory, stop and
 follow `references/purlin_commands.md#pending-migrations` before doing this skill's work.
-
-**Model routing:** before anything else, follow `references/formats/routing_format.md`, "The hand-off".
 
 ## Usage
 

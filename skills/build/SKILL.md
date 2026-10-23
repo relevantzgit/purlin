@@ -15,8 +15,6 @@ through `${CLAUDE_PLUGIN_ROOT}`. A project carries none of them.
 A line marked **Stop and ask** is a question for the person: print it, end your turn, and act
 only on their answer. Never answer it yourself.
 
-**Model routing:** before anything else, follow `references/formats/routing_format.md`, "The hand-off".
-
 ## Choosing what to build
 
 ```bash
@@ -161,6 +159,8 @@ It prints one JSON list of the comments that are nearly markers, each with its `
 ```bash
 purlin:test <name>
 ```
+
+Where routing is on and the test tier's model is not the one running, run it as `references/formats/routing_format.md`, "The hand-off", says.
 
 Never run the test framework directly. `purlin:test` runs the project's own test command, ties
 each result to the marker above its test, writes the evidence and prints the state of each rule;

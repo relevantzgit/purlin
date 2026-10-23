@@ -20,8 +20,6 @@ no test is run first: a failing test keeps its rule failing until the code is fi
 test covers the code, the rule says what the code does, not what it should do, so every rule
 this skill writes is a draft until a person reads it. Say so when you hand the result over.
 
-**Model routing:** before anything else, follow `references/formats/routing_format.md`, "The hand-off".
-
 ## Before you start
 
 Get the status from the tool `mcp__plugin_purlin_purlin__sync_status`, passing `project_root`:

@@ -14,8 +14,6 @@ the git checkout you are working in.
 A line marked **Stop and ask** is a question for the person: print it, end your turn, and act
 only on their answer. Never answer it yourself.
 
-**Model routing:** before anything else, follow `references/formats/routing_format.md`, "The hand-off".
-
 ## The one question
 
 Setup asks one question and nothing else: `Commit the files setup wrote? [y/N]`. The default is
