@@ -247,3 +247,16 @@ def test_the_asking_skills_and_init_are_named():
     assert [s for s in sentences if all(n in s for n in (
         '`spec`', '`spec-from-code`', '`sign`', '`purlin:runner`'))]
     assert [s for s in sentences if '`init`' in s and 'no project skill' in s]
+
+
+# purlin: model_routing PROOF-17
+def test_an_asking_skill_runs_in_place_on_its_own_model():
+    """The hand-off form runs the skill here where the session is on its model."""
+    hand = [body for head, body in _blocks(skill_checks.read(FORMAT))
+            if not re.search(r'^model: ', head, re.M)][0]
+    sentences = split(flat(hand))
+    in_place = [n for n, s in enumerate(sentences)
+                if all(name in s for name in ('If you already run on', '<model>',
+                                              'purlin:<skill>', 'here'))]
+    runner = [n for n, s in enumerate(sentences) if '`purlin:runner`' in s]
+    assert in_place and runner and in_place[0] < runner[0]
