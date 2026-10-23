@@ -90,9 +90,10 @@ this message, and do none of the work yourself:
 
 <the hand-off message, "The hand-off message" below, filled in: Command: purlin:<skill> $ARGUMENTS>
 
-Show the person what the subagent returns, word for word. When the person answers, send the
-answer word for word to that same subagent with SendMessage, and show its reply. Go on until the
-subagent says the work is done.
+Show the person what the subagent returns: its summary, the path of the file that holds what they
+must read, and its questions word for word. When the person answers, send the answer word for word
+to that same subagent with SendMessage, and show its reply. Go on until the subagent says the work
+is done.
 ```
 
 For each other skill, the project skill names the model, and Claude Code runs the command on it:
@@ -138,8 +139,14 @@ Previous: <the skill that ran this one>: <its result in one line>, or none
 Read:     <the spec>; <the test file>; <the evidence file>; any other file, by path
 Rules:    The model is chosen; do not route again. If the person must answer, stop and return the question.
 Return:   Up to 5 lines: result, files changed, commits, left to do, and the paths that hold the detail.
-          Anything that exists nowhere else, such as open questions or choices you made: add it as Notes.
+          Where the person must answer: write what they must read, such as a draft, to
+          .purlin/runtime/handoff/<skill>.md, and return its path, a summary of up to 10 lines and
+          the questions word for word.
 ```
+
+The draft goes to a file, which git ignores with the rest of `.purlin/runtime/`, so the session
+passes a short summary and the questions, not the whole draft; the person opens the file to read
+it.
 
 `agents/runner.md` is the subagent: it has the tools `Skill`, `Read`, `Write`, `Edit`, `Bash` and
 `PowerShell` alone, so it starts with a small context, and a platform's harness drops the shell it
