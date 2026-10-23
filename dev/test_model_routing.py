@@ -124,7 +124,8 @@ def project_skill_problems(text):
 
 
 # purlin: model_routing PROOF-4
-def test_the_format_gives_the_project_skill():
+def test_the_format_gives_both_project_skill_forms():
+    """The model form and the hand-off form, each marked and taking $ARGUMENTS."""
     assert project_skill_problems(skill_checks.read(FORMAT)) == []
 
 
@@ -177,11 +178,13 @@ def message_problems(text):
 
 # purlin: model_routing PROOF-8
 def test_the_hand_off_message_has_its_eight_lines_in_order():
+    """The message the hand-off form fills in, its fields in order."""
     assert message_problems(skill_checks.read(FORMAT)) == []
 
 
 # purlin: model_routing PROOF-9
 def test_a_message_without_its_goal_is_reported():
+    """A copy of the format with no `Goal:` line reports it missing."""
     text = '\n'.join(line for line in skill_checks.read(FORMAT).splitlines()
                      if not line.startswith('Goal:'))
     assert message_problems(text) == ['Goal: missing']
@@ -229,6 +232,7 @@ def test_the_agent_points_at_the_format_and_does_not_restate_it():
 
 # purlin: model_routing PROOF-14
 def test_the_model_of_an_ai_tag_is_not_routed():
+    """One sentence of the format says an `@ai(...)` model is not routed."""
     assert len(sentences_with(FORMAT, ('@ai(', 'is not routed'))) == 1
 
 

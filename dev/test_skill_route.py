@@ -99,7 +99,7 @@ COMMIT = ('.purlin/routing.json', '.claude/settings.json', '.claude/skills/',
 
 
 # purlin: skill_route PROOF-10
-def test_setup_and_off_each_commit_the_two_files_under_chore():
+def test_setup_and_off_each_commit_the_routing_settings_and_skills_under_chore():
     assert with_all(part('Setup'), COMMIT)
     assert with_all(part('Off'), COMMIT)
 
