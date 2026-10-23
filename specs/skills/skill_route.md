@@ -1,0 +1,33 @@
+# Feature: skill_route
+
+> Description: What `skills/route/SKILL.md` must say. Route shows, sets up and turns off model
+>   routing: it writes the project's tier table and the session settings, and starts no script
+>   and no model to decide or check anything.
+> Scope: skills/route/SKILL.md
+> Stack: markdown, Claude Code skill definition
+> Highest-Rule: 6
+> Highest-Proof: 12
+
+## Rules
+
+- RULE-1: The skill names the commands `purlin:route`, `purlin:route setup` and `purlin:route off` and the path `references/formats/routing_format.md`, and names no script under `scripts/`
+- RULE-2: In the part `Setup`, a **Stop and ask** that names the model each tier gets comes before the file is written
+- RULE-3: The skill says `.purlin/routing.local.json` holds `tiers` alone and that git ignores it
+- RULE-4: Setup writes `"agent": "purlin:purlin"` and the `balanced` model into `.claude/settings.json`, keeping every other setting, and Off takes the two out again
+- RULE-5: Setup and Off each commit `.purlin/routing.json` and `.claude/settings.json` under the `chore:` prefix
+- RULE-6: The skill says setup starts no model, so a model the harness does not know fails at the first skill that names it
+
+## Proof
+
+- PROOF-1 (RULE-1): The route skill as shipped names `purlin:route`, `purlin:route setup`, `purlin:route off` and `references/formats/routing_format.md`, and the check reports no problem
+- PROOF-2 (RULE-1): A copy of the route skill with every `purlin:route off` taken out is reported as `route does not name purlin:route off`
+- PROOF-3 (RULE-1): No line of the route skill names a path under `scripts/`
+- PROOF-4 (RULE-2): In the route skill's part `Setup`, the sentence holding both `Stop and ask` and `the model each tier gets` comes before the sentence holding `Write .purlin/routing.json`
+- PROOF-5 (RULE-2): A copy of the route skill with every `Stop and ask` taken out holds no sentence with both in its part `Setup`
+- PROOF-6 (RULE-3): One sentence of the route skill holds `.purlin/routing.local.json`, `tiers` alone and `git ignores`
+- PROOF-7 (RULE-3): A copy of the route skill with every `git ignores` taken out holds no such sentence
+- PROOF-8 (RULE-4): The route skill's part `Setup` holds a sentence with `"agent": "purlin:purlin"`, `.claude/settings.json` and `every other setting`, and its part `Off` a sentence with `.claude/settings.json` and `takes out`
+- PROOF-9 (RULE-4): A copy of the route skill with every `every other setting` taken out holds no such sentence in its part `Setup`
+- PROOF-10 (RULE-5): Each of the route skill's parts `Setup` and `Off` holds a sentence with `.purlin/routing.json`, `.claude/settings.json` and `chore:`
+- PROOF-11 (RULE-5): A copy of the route skill with every `chore:` taken out holds no such sentence in either part
+- PROOF-12 (RULE-6): One sentence of the route skill holds `starts no model` and `fails at the first skill`
