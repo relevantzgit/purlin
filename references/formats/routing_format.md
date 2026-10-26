@@ -17,7 +17,7 @@ Each skill's tier is the `tier:` line of its front matter, `skills/<name>/SKILL.
 |-------|------|
 | `status` | `fast` |
 | `drift` | `fast` |
-| `test` | `fast` |
+| `test` | `balanced` |
 | `build` | `balanced` |
 | `init` | `balanced` |
 | `anchor` | `balanced` |
@@ -26,7 +26,9 @@ Each skill's tier is the `tier:` line of its front matter, `skills/<name>/SKILL.
 | `spec-from-code` | `performance` |
 | `sign` | `performance` |
 
-`route` names no tier. `audit` is `balanced` because its session starts a script and reads the
+`route` names no tier. `test` is `balanced`, the session's own model, because a switch to
+another model and back rewrites the conversation into each model's cache, which on a measured
+three-part feature cost more than running the tests on `haiku` saved. `audit` is `balanced` because its session starts a script and reads the
 result; the judgement is in the planted bugs, written on the `performance` model, as "The audit's
 planted bugs" below says.
 

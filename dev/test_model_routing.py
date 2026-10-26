@@ -75,7 +75,8 @@ def test_each_skill_names_the_tier_the_table_gives_it():
 def test_a_test_skill_on_another_tier_is_listed():
     table = table_tiers(skill_checks.read(FORMAT))
     texts = skill_texts()
-    texts['test'] = texts['test'].replace('tier: fast', 'tier: performance')
+    texts['test'] = re.sub(r'^tier: \w+$', 'tier: performance', texts['test'],
+                           count=1, flags=re.M)
     assert wrong_tiers(texts, table) == ['test']
 
 
