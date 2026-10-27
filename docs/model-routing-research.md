@@ -24,7 +24,7 @@ The three requirements, one `spec` each:
 
 | | Off | On |
 |---|---|---|
-| Session | Opus 5.5 throughout | Sonnet 5.5, set by `purlin:route setup` |
+| Session | Opus 5.5 throughout | Sonnet 5.5, set by `purlin:route on` |
 | Commands | `/purlin:spec`, `/purlin:build`, ... | `/spec`, `/build`, ... |
 | spec | Opus, in the session | one Opus runner subagent per part; the session shows its draft and passes the answer back |
 | build, test, audit | Opus | Sonnet, the session's own model |
@@ -37,7 +37,7 @@ the interactive cache price; on a subscription they show how fast usage limits a
 
 | | Off | On | Difference |
 |---|---|---|---|
-| Setup: init, route setup | $0.17 | $0.21 | +$0.04 |
+| Setup: init, route on | $0.17 | $0.21 | +$0.04 |
 | spec ×3 | $1.22 | $1.68 | +$0.46 |
 | build ×3 | $1.23 | $0.62 | −$0.61 |
 | test ×3 | $0.31 | $0.09 | −$0.22 |
@@ -55,7 +55,7 @@ make up most of the work. Every rule passes in both.
 | Part | Step | Off: Opus | On | On: what ran |
 |---|---|---|---|---|
 | setup | `init`, then yes to the commit | $0.17 | $0.14 | Sonnet |
-| | `route setup`, then the answers | | $0.07 | Sonnet |
+| | `route on`, then the answers | | $0.07 | Sonnet |
 | inventory | spec: draft | $0.25 | $0.38 | Opus runner $0.29 (start-up 13,000 tokens), session showing the draft $0.09 |
 | | spec: your answer, save, commit | $0.17 | $0.22 | Opus runner $0.17, session $0.05 |
 | | build, then yes to the test command | $0.47 | $0.24 | Sonnet |

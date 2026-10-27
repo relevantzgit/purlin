@@ -5,7 +5,7 @@
 Model routing gives each Purlin skill a tier and each tier a model, so a skill that runs a script
 and reads its output does not spend what a skill that writes rules spends. Each skill names its
 tier in its own front matter; the project gives each tier a model in `.purlin/routing.json`;
-`purlin:route setup` writes one project skill per Purlin skill that runs it on that model. No script
+`purlin:route on` writes one project skill per Purlin skill that runs it on that model. No script
 decides. This page is the one home of the tables, the file, the project skills, the hand-off and
 the hand-off message.
 
@@ -69,7 +69,7 @@ writes theirs there, and git ignores it.
 
 ## The project skills
 
-`purlin:route setup` writes `.claude/skills/<skill>/SKILL.md` in the project for each skill that
+`purlin:route on` writes `.claude/skills/<skill>/SKILL.md` in the project for each skill that
 names a tier, and no project skill for `init`, which runs before routing is set up and whose
 name Claude Code's own `/init` takes.
 
@@ -113,7 +113,7 @@ Say `<skill>: <tier> (<model>)`, then run purlin:<skill> with these arguments: $
 
 A command the person types, `/<skill> <arguments>`, runs on that model; the turn after it is back
 on the session's model. A request in plain words, or `/purlin:<skill>` typed whole, runs on the
-session's model. The description marks the file as written by `purlin:route`; setup never writes
+session's model. The description marks the file as written by `purlin:route`; `purlin:route on` never writes
 over a file there without that mark.
 
 ## The hand-off
@@ -158,7 +158,7 @@ does not have.
 ## The session
 
 The session reads requests in plain words, passes messages for the hand-off and runs the skills
-other skills run, so it runs on the `balanced` model. `purlin:route setup` writes this into the project's Claude Code settings,
+other skills run, so it runs on the `balanced` model. `purlin:route on` writes this into the project's Claude Code settings,
 keeping every other setting:
 
 ```json
@@ -179,7 +179,7 @@ routed: it is the model that proof's test runs on.
 ## Limits
 
 - A model the harness does not know fails at the first command that names it;
-  `purlin:route setup` starts no model to check.
+  `purlin:route on` starts no model to check.
 - The hand-off is a step the session follows, not code: nothing forces it.
 - The subagent starts with its own instructions and the hand-off message, about 14,000 tokens, and
   the session spends on passing messages; a spec handed off cost $0.72 where a whole session on

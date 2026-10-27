@@ -137,7 +137,7 @@ build.
 
 Each skill names its tier in its front matter, and a project with `.purlin/routing.json` gives
 each tier a model. A command the person types, `/<skill>`, runs on its model through the project
-skill `purlin:route setup` wrote: `references/formats/routing_format.md`, "The project skills".
+skill `purlin:route on` wrote: `references/formats/routing_format.md`, "The project skills".
 A skill that asks the person runs whole on a `purlin:runner` subagent, each answer sent to that
 same subagent: the same reference, "The hand-off", is the one home of that step and its message.
 

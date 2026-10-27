@@ -112,7 +112,7 @@ behaves.
 |------|---------|--------|
 | model routing | Which model each Purlin skill runs on: its tier from its front matter, and the tier's model from `.purlin/routing.json`, which `purlin:route` writes. Without the file every skill runs on the session's model | `formats/routing_format.md` |
 | tier | `fast`, `balanced` or `performance`: the size of model a skill's work needs. A skill names its tier, and a project gives each tier a model | `formats/routing_format.md`, "The two tables" |
-| project skill | `.claude/skills/<skill>/SKILL.md`, written by `purlin:route setup`: typed as `/<skill>`, it runs `purlin:<skill>` on its tier's model | `formats/routing_format.md`, "The project skills" |
+| project skill | `.claude/skills/<skill>/SKILL.md`, written by `purlin:route on`: typed as `/<skill>`, it runs `purlin:<skill>` on its tier's model | `formats/routing_format.md`, "The project skills" |
 | hand-off | A skill that asks the person, `spec`, `spec-from-code` or `sign`, run whole on a `purlin:runner` subagent on its model, each answer sent to that same subagent | `formats/routing_format.md`, "The hand-off" |
 
 ## The chain
