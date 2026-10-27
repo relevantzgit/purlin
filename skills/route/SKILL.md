@@ -56,9 +56,9 @@ print `Routing is off. Run purlin:route setup to turn it on.` Write nothing eith
    and say it runs on the session's model.
 6. Merge `"agent": "purlin:purlin"` and `"model": "<the balanced model>"` into
    `.claude/settings.json`, keeping every other setting, or into `.claude/settings.local.json`
-   where the models are the person's alone. Tell the person that sessions started from now on run
-   as the Purlin agent on that model, that this session keeps its own, and that `/<skill>` runs a
-   skill on its tier's model.
+   where the models are the person's alone. Tell the person that routing works in this session now,
+   that new sessions start as the Purlin agent on that model, and to type `/<skill>`, not
+   /purlin:<skill>, since `/purlin:<skill>` and requests in plain words run on the session's model.
 7. Commit `.purlin/routing.json`, `.claude/settings.json` and `.claude/skills/`, with `.gitignore`
    where step 4 changed it, and nothing else, as `chore: model routing`. The commit takes the
    `chore:` prefix of `references/commit_conventions.md`. Then show the table as "Show" says.
@@ -73,9 +73,14 @@ setting. Commit `.purlin/routing.json`, `.claude/settings.json` and `.claude/ski
 `chore: model routing off`. Every skill then runs on the session's model, sessions start as they
 did before routing, and `purlin:route setup` turns routing on again with the settings kept.
 
-## Limits
+## Gotchas
 
+- Write nothing until the person answers the **Stop and ask**: a session that ends at the question
+  leaves routing unset.
+- `/purlin:<skill>` always runs Purlin's own skill on the session's model; only `/<skill>` carries
+  the tier's model.
+- A skill another skill runs, and a request in plain words, use the model already running.
+- Routing works in this session at once, and this session keeps its own model; the settings make
+  new sessions start on the `balanced` model.
 - Setup starts no model, so a model the harness does not know fails at the first skill that
   names it. Run `purlin:route setup` again to change it.
-- A skill runs on its tier's model when the person types its command, `/<skill>`. A request in
-  plain words, or `/purlin:<skill>`, runs on the session's model.

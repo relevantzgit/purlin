@@ -184,7 +184,7 @@ input, takes the end of input as no, and goes on only with a typed answer or the
 | `purlin:anchor <cmd>` | Write rules that hold across the whole project as an anchor, pull an anchor from another repository, and keep its pin current | A developer, or product in Claude Code |
 | `purlin:status [name]` | Show where the project stands: whether the tests are met, whether it is signed, each rule's two cells, and what is left to do | Anyone with a checkout, any time; with a name, to see one spec's rules. After merging work from a worktree, in the main checkout |
 | `purlin:spec-from-code [dir]` | Write the specs for a codebase that has none, from the code and the tests it already has | A developer, once, on a codebase that has no specs. Optional |
-| `purlin:route [setup \| off]` | Show, set up or turn off model routing, so each Purlin skill runs on a model sized to its work | A developer, once per project or when the models change. Optional: without it every skill runs on the session's model |
+| `purlin:route [setup \| off]` | Show, set up or turn off model routing, so each Purlin skill runs on a model sized to its work | A developer, once per project or when the models change. Optional: without it every skill runs on the session's model. In a project with routing set up, type `/spec`, `/build` and the rest to run each on its tier's model; `/purlin:<skill>` runs on the session's model |
 
 ## Syntax
 
