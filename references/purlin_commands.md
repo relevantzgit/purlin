@@ -234,7 +234,7 @@ input, takes the end of input as no, and goes on only with a typed answer or the
   Routing
   purlin:route                    The tier and model of each skill
   purlin:route setup              Give each tier a model, write a project skill per skill, start sessions as the Purlin agent
-  purlin:route off                Run every skill in this session again
+  purlin:route off                Run every skill on the session's model again
 ```
 
 `--json` prints the anchor script's answer as JSON.
