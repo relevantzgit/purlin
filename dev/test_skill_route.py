@@ -141,3 +141,44 @@ def test_the_gotchas_name_the_four_facts():
 # purlin: skill_route PROOF-16
 def test_setup_tells_the_person_which_commands_carry_the_model():
     assert with_all(part('Setup'), ('/<skill>', 'not /purlin:<skill>', 'plain words'))
+
+
+def setup_steps():
+    """The numbered steps of the part `Setup`, each as one flat string."""
+    text = under_heading(skill_checks.read(SKILL), 'Setup')
+    return [flat(step) for step in re.split(r'\n(?=\d+\. )', text) if re.match(r'\d+\. ', step)]
+
+
+def first_step(steps, names):
+    return next((n for n, step in enumerate(steps) if all(name in step for name in names)), None)
+
+
+# purlin: skill_route PROOF-17
+def test_setup_names_each_part_of_the_format_at_its_step():
+    steps = setup_steps()
+    tables = first_step(steps, ('"The two tables"',))
+    the_file = first_step(steps, ('"The file"',))
+    skills = first_step(steps, ('"The project skills"', '"The hand-off message"'))
+    assert None not in (tables, the_file, skills) and tables < the_file < skills
+
+
+# purlin: skill_route PROOF-18
+def test_setup_copies_the_templates_exactly():
+    assert with_all(part('Setup'), ('exactly', '<skill>', '<tier>', '<model>'))
+    assert with_all(part('Setup'), ('no `<`', 'placeholder'))
+
+
+# purlin: skill_route PROOF-19
+def test_setup_opens_on_a_checklist_from_the_answer_to_the_commit():
+    text = under_heading(skill_checks.read(SKILL), 'Setup')
+    before = text[:re.search(r'^\d+\. ', text, re.M).start()]
+    items = [line for line in before.splitlines() if line.startswith('- [ ]')]
+    assert items and 'answered' in items[0] and 'Committed' in items[-1]
+
+
+# purlin: skill_route PROOF-20
+def test_setup_checks_its_work_before_it_commits():
+    steps = setup_steps()
+    check = first_step(steps, ('before you commit', 'model', 'init', '.claude/settings.json', 'again'))
+    commit = first_step(steps, ('chore: model routing',))
+    assert check is not None and commit is not None and check < commit
